@@ -124,6 +124,7 @@ pub fn error_count(attrs: TokenStream, item: TokenStream) -> syn::Result<TokenSt
         impl<C: metered::metric::Counter> #metrics_ident<C> {
             pub fn incr(&self, err: &#ident) {
                 match err {
+                    #[allow(clippy::ignored_unit_patterns)]
                     #( #(#cfg_attrs)* #ident::#variants #variants_args => #variant_incr_call, )*
                 }
             }
